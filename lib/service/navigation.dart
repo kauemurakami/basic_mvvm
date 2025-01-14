@@ -9,12 +9,36 @@ class NavigationService {
 
   navigate(Widget widget) {
     return navigatorKey.currentState?.push(MaterialPageRoute(
-      builder: (context) => widget,
+      builder: (context) {
+        return widget;
+      },
     ));
   }
+
   navigateReplace(Widget widget) {
-    return navigatorKey.currentState?.pushReplacement(MaterialPageRoute(
+    return navigatorKey.currentState?.pushReplacement(MaterialPageRoute(builder: (context) {
+      return widget;
+    }));
+  }
+
+  Future<void> showDialog(/*BuildContext? context,*/ Widget widget) async {
+    await showAdaptiveDialog(
+      barrierDismissible: true,
+      context: /*context ??*/ navigatorKey.currentContext!,
       builder: (context) => widget,
-    ));
+    );
+  }
+
+  //add text and function action
+  void showSnackbar() {
+    final context = navigatorKey.currentContext!;
+    ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+    const SnackBar snackBarWidget = SnackBar(
+      content: Text(
+        'Hello World - movies app',
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBarWidget);
   }
 }

@@ -16,8 +16,10 @@ class MoviesScreen extends StatelessWidget {
         title: const Text('Popular movies'),
         actions: [
           IconButton(
-            onPressed: () {
-              getIt<NavigationService>().navigate(const FavoritesScreen());
+            onPressed: () async {
+              // await getIt<NavigationService>().showDialog(Text('aaa'));
+              // getIt<NavigationService>().showSnackbar();
+              await getIt<NavigationService>().navigate(const FavoritesScreen());
             },
             icon: const Icon(
               AppIcons.favoriteRounded,
