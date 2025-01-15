@@ -60,7 +60,7 @@ class MoviesWidget extends StatelessWidget {
                               size: 20,
                             ),
                             const SizedBox(width: 5),
-                            Text("${movie.voteAverage}/10"),
+                            Text("${movie.voteAverage.toStringAsFixed(1)}/10"),
                           ],
                         ),
                         const SizedBox(height: 10),
@@ -82,7 +82,9 @@ class MoviesWidget extends StatelessWidget {
                               style: const TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
-                            const FavoriteButtonWidget()
+                            FavoriteButtonWidget(
+                              movie: movie,
+                            )
                           ],
                         ),
                       ],

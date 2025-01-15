@@ -73,7 +73,7 @@ class MoveDetailsScreen extends StatelessWidget {
                                     const SizedBox(
                                       width: 5.0,
                                     ),
-                                    Text('${movie.voteAverage}/10'),
+                                    Text('${movie.voteAverage.toStringAsFixed(1)}/10'),
                                     const Spacer(),
                                     Text(
                                       movie.releaseDate.toIso8601String(),
@@ -109,9 +109,11 @@ class MoveDetailsScreen extends StatelessWidget {
                             color: Theme.of(context).cardColor,
                             shape: BoxShape.circle,
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(6.0),
-                            child: FavoriteButtonWidget(),
+                          child: Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: FavoriteButtonWidget(
+                              movie: movie,
+                            ),
                           ),
                         ),
                       ),
