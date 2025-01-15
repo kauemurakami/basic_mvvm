@@ -22,10 +22,11 @@ class FavoritesScreen extends StatelessWidget {
           )
         ],
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) => const MoviesWidget(),
-      ),
+      body: ListView.builder(itemCount: 10, itemBuilder: (context, index) => Text('ss')
+          // const MoviesWidget(
+          //   movie: MovieModel(),
+          // ),
+          ),
     );
   }
 }

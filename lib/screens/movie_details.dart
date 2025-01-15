@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm/constants/app_constants.dart';
 import 'package:flutter_mvvm/constants/app_icons.dart';
+import 'package:flutter_mvvm/models/movies_model.dart';
 import 'package:flutter_mvvm/widgets/cached_image.dart';
 import 'package:flutter_mvvm/widgets/movies/favorite_button.dart';
 import 'package:flutter_mvvm/widgets/movies/genres_list_widget.dart';
 
 class MoveDetailsScreen extends StatelessWidget {
-  const MoveDetailsScreen({super.key});
-
+  const MoveDetailsScreen({super.key, required this.movie});
+  final MovieModel movie;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
@@ -15,11 +15,14 @@ class MoveDetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            SizedBox(
-              height: size.height * .45,
-              width: double.infinity,
-              child: const CachedImageWidget(
-                imageUrl: AppConstants.cImageUrl,
+            Hero(
+              tag: movie.id,
+              child: SizedBox(
+                height: size.height * .45,
+                width: double.infinity,
+                child: CachedImageWidget(
+                  imageUrl: 'https://image.tmdb.org/t/p/w500/${movie.backdropPath}',
+                ),
               ),
             ),
             SingleChildScrollView(
@@ -46,10 +49,10 @@ class MoveDetailsScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 25.0,
                                 ),
-                                const Text(
-                                  'Movie Title',
+                                Text(
+                                  movie.originalTitle,
                                   maxLines: 2,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 28.0,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -60,21 +63,21 @@ class MoveDetailsScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 5.0,
                                 ),
-                                const Row(
+                                Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       AppIcons.star,
                                       color: Colors.amber,
                                       size: 20.0,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 5.0,
                                     ),
-                                    Text('9/10'),
-                                    Spacer(),
+                                    Text('${movie.voteAverage}/10'),
+                                    const Spacer(),
                                     Text(
-                                      'Release Date',
-                                      style: TextStyle(
+                                      movie.releaseDate.toIso8601String(),
+                                      style: const TextStyle(
                                         color: Colors.grey,
                                       ),
                                     ),
@@ -83,12 +86,14 @@ class MoveDetailsScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 10.0,
                                 ),
-                                const GenresListWidget(),
+                                GenresListWidget(
+                                  movie: movie,
+                                ),
                                 const SizedBox(
                                   height: 15.0,
                                 ),
                                 Text(
-                                  'overview' * 200,
+                                  movie.overview,
                                   textAlign: TextAlign.justify,
                                   style: const TextStyle(fontSize: 18.0),
                                 ),

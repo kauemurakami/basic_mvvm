@@ -30,13 +30,13 @@ class NavigationService {
   }
 
   //add text and function action
-  void showSnackbar() {
+  void showSnackbar(String message) {
     final context = navigatorKey.currentContext!;
     ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
-    const SnackBar snackBarWidget = SnackBar(
+    final SnackBar snackBarWidget = SnackBar(
       content: Text(
-        'Hello World - movies app',
-        style: TextStyle(color: Colors.white),
+        message,
+        style: const TextStyle(color: Colors.white),
       ),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBarWidget);

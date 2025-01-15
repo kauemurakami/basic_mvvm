@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mvvm/constants/app_theme_data.dart';
 import 'package:flutter_mvvm/screens/movies.dart';
+import 'package:flutter_mvvm/screens/splash_screen.dart';
 import 'package:flutter_mvvm/service/init_get.dart';
 import 'package:flutter_mvvm/service/navigation.dart';
 
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Movies App',
       theme: AppThemeData.lightTheme,
-      home: const MoviesScreen(),
+      home: const SplashScreen(),
     );
   }
 }
